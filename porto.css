@@ -1,6 +1,6 @@
 /* Reset dan variabel */
 :root {
-  --primary-color: #ff4d4d;
+  --primary-color: #ff0000;
   --secondary-color: #ff1a1a;
   --text-color: #ffffff;
   --light-text: #cccccc;
@@ -144,6 +144,10 @@ nav {
 .intro h3 {
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
+}
+
+.intro h3 span{
+  color: red;
 }
 
 .highlight {
@@ -487,6 +491,10 @@ footer {
   color: var(--light-text);
 }
 
+.contact-details a {
+  color: red;
+}
+
 .social-links {
   display: flex;
   gap: 20px;
@@ -734,119 +742,184 @@ footer {
 
 .education-title h2 {
   font-size: 2.5rem;
-  color: var(--text-color);
-  margin-bottom: 20px;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
 }
 
 .education-title p {
   color: var(--light-text);
-  max-width: 600px;
-  margin: 0 auto;
+  font-size: 1.1rem;
 }
 
 .education-timeline {
   position: relative;
   max-width: 800px;
   margin: 0 auto;
+  padding: 20px 0;
 }
 
-.education-timeline::after {
-  content: '';
-  position: absolute;
-  width: 2px;
-  background-color: var(--primary-color);
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  margin-left: -1px;
+/* Removing the vertical line completely */
+.education-timeline::before {
+  content: none;
 }
 
 .education-item {
-  padding: 10px 40px;
   position: relative;
-  width: 50%;
-  box-sizing: border-box;
+  transition: all 0.4s ease;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: 10px;
+  background: rgba(255, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.1);
 }
 
-.education-item:nth-child(odd) {
-  left: 0;
+.education-item:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(255, 0, 0, 0.2);
+  border-color: var(--primary-color);
 }
 
-.education-item:nth-child(even) {
-  left: 50%;
-}
-
-.education-content {
-  padding: 20px;
-  background-color: var(--section-bg);
-  border-radius: 15px;
-  border: 1px solid var(--primary-color);
+.hover-effect {
   position: relative;
-  transition: transform 0.3s ease;
+  display: inline-block;
+  transition: color 0.3s ease;
 }
 
-.education-content:hover {
-  transform: translateY(-5px);
+.hover-effect:hover {
+  color: var(--primary-color);
 }
 
-.education-content::after {
+.hover-effect::after {
   content: '';
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
   background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.hover-effect:hover::after {
+  width: 100%;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.education-achievements {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.achievement {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 0, 0, 0.1);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+.achievement:hover {
+  transform: scale(1.05);
+  background: rgba(255, 0, 0, 0.15);
+  border-color: var(--primary-color);
+}
+
+.achievement i {
+  color: var(--primary-color);
+}
+
+.education-icon {
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  background: var(--primary-color);
   border-radius: 50%;
-  top: 20px;
-  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+  transition: all 0.3s ease;
 }
 
-.education-item:nth-child(odd) .education-content::after {
-  right: -10px;
-}
-
-.education-item:nth-child(even) .education-content::after {
-  left: -10px;
+.education-item:hover .education-icon {
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
 }
 
 .education-date {
-  color: var(--primary-color);
+  position: absolute;
+  right: -120px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 0, 0, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
   font-weight: bold;
-  margin-bottom: 10px;
+  color: var(--primary-color);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
-.education-content h3 {
-  color: var(--text-color);
-  font-size: 1.3rem;
-  margin-bottom: 5px;
+.education-item:hover .education-date {
+  background: rgba(255, 0, 0, 0.15);
+  border-color: var(--primary-color);
 }
 
-.education-content h4 {
-  color: var(--light-text);
-  font-size: 1rem;
-  margin-bottom: 10px;
-}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .education-date {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+  
+  .education-icon {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin-bottom: 1rem;
+  }
+  
+  .education-achievements {
+    flex-direction: column;
+  }
 
-.education-content p {
-  color: var(--light-text);
-}
-
-@media screen and (max-width: 768px) {
-  .education-timeline::after {
-    left: 31px;
+  .education-timeline::before {
+    left: 30px;
   }
 
   .education-item {
-    width: 100%;
-    padding-left: 70px;
-    padding-right: 25px;
-  }
-
-  .education-item:nth-child(even) {
-    left: 0;
-  }
-
-  .education-content::after {
-    left: -10px !important;
+    margin-left: 60px;
   }
 }
 
